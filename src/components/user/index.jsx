@@ -5,27 +5,29 @@ class User extends Component {
     super(props);
     this.state = {
       likes: 0,
-      isLikes: false
+      isLikes: false,
     };
   }
 
   bindLike = () => {
     this.setState({
-     likes:this.state.likes+1,
-     isLikes: !this.state.isLikes
+      likes: this.state.likes + 1,
+      isLikes: !this.state.isLikes,
     });
   };
-  
+
   render() {
-    const { username, lastname } = this.props;
+    const { username, lastname, id, deleteUserList } = this.props;
     return (
-        
       <div>
         <p>
           {username} {lastname}
         </p>
         <p>likes: {this.state.likes}</p>
-        <button disabled = {this.state.isLikes}onClick={this.bindLike}>{this.state.likes===0 ? 'Like' : 'You already liked'}</button>
+        <button disabled={this.state.isLikes} onClick={this.bindLike}>
+          {this.state.likes === 0 ? "Like" : "You already liked"}
+        </button>
+        <button onClick={() => deleteUserList(id)}>Delete User</button>
       </div>
     );
   }
